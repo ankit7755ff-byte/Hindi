@@ -1,0 +1,5 @@
+{
+  "name": "Namaste Hindi",
+  "description": "An interactive web app to learn Hindi translations, common phrases, and object identification using the Gemini API. Translate English to Hindi, listen to pronunciations, explore categorized phrasebooks, and identify objects in images.",
+  "requestFramePermissions": []
+}
