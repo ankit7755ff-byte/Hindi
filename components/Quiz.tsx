@@ -1,5 +1,6 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { generateQuiz } from '../services/geminiService';
+import { updateProgressOnQuizCompletion } from '../services/progressService';
 import { QuizQuestion, PhraseCategory } from '../types';
 import { PHRASE_CATEGORIES } from '../constants';
 import Card from './common/Card';
@@ -35,6 +36,12 @@ const Quiz: React.FC = () => {
       setQuizState('idle');
     }
   }, [selectedCategory]);
+
+  useEffect(() => {
+    if (quizState === 'finished' && questions.length > 0) {
+      updateProgressOnQuizCompletion(score, questions.length);
+    }
+  }, [quizState, score, questions.length]);
 
   const handleAnswer = (answerIndex: number) => {
     if (selectedAnswer !== null) return;
